@@ -5,11 +5,11 @@
 /usr/sbin/iptables -P INPUT DROP
 /usr/sbin/iptables -P OUTPUT  ACCEPT
 #Office
-/usr/sbin/iptables -A INPUT -s 127.0.0.1 -j ACCEPT      #TechZ-Office
-/usr/sbin/iptables -A INPUT -s 172.16.0.0/16 -j ACCEPT     #Pravite
-/sbin/iptables  -A INPUT -m iprange --src-range  192.168.1.122-192.168.1.126 -j ACCEPT   #TechZ-Office
-/sbin/iptables  -A INPUT -m iprange --src-range  192.168.2.225-192.168.2.254 -j ACCEPT   #HK-CU
-/sbin/iptables  -A INPUT -m iprange --src-range    192.168.3.17-192.168.3.30 -j ACCEPT   #HK-CTC
+/usr/sbin/iptables -A INPUT -s 127.0.0.1 -j ACCEPT      
+/usr/sbin/iptables -A INPUT -s 192.168.0.0/24 -j ACCEPT     #
+/sbin/iptables  -A INPUT -m iprange --src-range  192.168.1.122-192.168.1.126 -j ACCEPT   
+/sbin/iptables  -A INPUT -m iprange --src-range  192.168.2.225-192.168.2.254 -j ACCEPT   
+/sbin/iptables  -A INPUT -m iprange --src-range    192.168.3.17-192.168.3.30 -j ACCEPT   
 #service port#
 /usr/sbin/iptables -A INPUT -p tcp -m tcp --dport 2017 -j ACCEPT
 /usr/sbin/iptables -A INPUT -p tcp -m tcp --dport 10050 -j ACCEPT
