@@ -1,0 +1,24 @@
+ZABBIX安装
+关于zabbix及相关服务软件版本：
+Linux：centos 6.6
+nginx：1.9.15
+MySQL：5.5.49
+PHP：5.5.35
+#一、安装nginx：
+#安装依赖包：
+[root@test-zabbix ~]# yum -y install gcc gcc-c++ autoconf automake zlib zlib-devel openssl openssl-devel pcre* make gd-devel libjpeg-devel libpng-devel libxml2-devel bzip2-devel libcurl-devel
+#创建用户
+[root@test-zabbix ~]# useradd nginx -s /sbin/nologin -M
+#下载nginx软件包并进入到目录中：
+[root@test-zabbix nginx-1.9.15]# wget http://nginx.org/download/nginx-1.9.15.tar.gz && tar xvf nginx-1.9.15.tar.gz && cd nginx-1.9.15
+#编译
+[root@test-zabbix nginx-1.9.15]# ./configure --prefix=/usr/local/product/nginx1.9.14 --user=www --group=www --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-pcre
+[root@test-zabbix nginx-1.9.15]# make && make install
+[root@test-zabbix nginx-1.9.15]# ln -s /usr/local/product/nginx1.9.14 /usr/local/nginx  >>>>>>>创建软链接
+#安装php
+#下载安装php安装包
+[root@test-zabbix ~]# wget http://cn2.php.net/get/php-5.5.35.tar.gz/from/this/mirror
+#解压并编译
+[root@test-zabbix php-5.5.35]# mv mirror php-5.5.35.tar.gz && tar xvf php-5.5.35.tar.gz && cd php-5.5.35
+[root@test-zabbix php-5.5.35]# ./configure --prefix=/usr/local/product/php-5.5.35 --with-config-file-path=/usr/local/product/php-5.5.35/etc --with-bz2 --with-curl --enable-ftp --enable-sockets --disable-ipv6 --with-gd --with-jpeg-dir=/usr/local --with-png-dir=/usr/local --with-freetype-dir=/usr/local --enable-gd-native-ttf --with-iconv-dir=/usr/local --enable-mbstring --enable-calendar --with-gettext --with-libxml-dir=/usr/local --with-zlib --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --with-mysql=mysqlnd --enable-dom --enable-xml --enable-fpm --with-libdir=lib64 --enable-bcmath
+[root@test-zabbix php-5.5.35]# make && make install
